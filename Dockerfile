@@ -13,9 +13,9 @@ COPY --from=base /git/ArgFuscator.net .
 RUN apt update && \
     apt install -y node-typescript python3-yaml && \
     tsc --project src/ --outfile gui/assets/js/main.js && \
-    mv models/ gui/assets/models && \
+    mv models gui/assets/models && \
     python3 .github/workflows/json-transform.py && \
-    gem install jekyll && \
+    gem install jekyll jekyll-redirect-from && \
     jekyll build --source gui
 
 FROM joseluisq/static-web-server
